@@ -23,11 +23,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{">首页</a></li>
+                <li class="active"><a href="{{ url('/') }}">首页</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">登陆</a></li>
+                @if(Auth::check())
+                    <li><a href="">{{ Auth::user()->name }}</a></li>
+                @else
+                <li><a href="{{ url('/user/login') }}">登陆</a></li>
                 <li><a href="{{ url('/user/register') }}">注册</a></li>
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div>
