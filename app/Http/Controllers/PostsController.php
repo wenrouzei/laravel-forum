@@ -7,6 +7,7 @@ use App\Http\Requests\ForumPostRequest;
 use App\Markdown\Markdown;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use YuanChao\Editor\EndaEditor;
 
 class PostsController extends Controller
 {
@@ -25,7 +26,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $discussions = Discussion::all();
+        $discussions = Discussion::latest()->paginate(10);
         return view('forum.index', compact('discussions'));
     }
 
@@ -109,5 +110,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function upload()
+    {
+        $data = EndaEditor::uploadImgFile('uploads');
+
+        return json_encode($data);
     }
 }

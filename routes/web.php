@@ -18,11 +18,15 @@
 Route::get('/','PostsController@index');
 
 Route::resource('discussions','PostsController');
+Route::post('discussions/upload','PostsController@upload');
+Route::resource('comments','CommentsController');
 
 Route::get('/user/register', 'UsersController@register');
 Route::post('/user/register', 'UsersController@store');
 Route::get('/user/login', 'UsersController@login');
 Route::post('/user/login', 'UsersController@signin');
+Route::get('/user/avatar', 'UsersController@avatar');
+Route::post('/user/avatar', 'UsersController@changeAvatar');
 
 Route::get('verify/{confirm_code}', 'UsersController@confirmEmail');
 

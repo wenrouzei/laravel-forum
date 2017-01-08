@@ -94,6 +94,16 @@ class UsersController extends Controller
         return redirect()->back()->withInput();
     }
 
+    public function avatar()
+    {
+        return view('users.avatar');
+    }
+
+    public function changeAvatar()
+    {
+        dd('333');
+    }
+
     /**
      * Display the specified resource.
      *
