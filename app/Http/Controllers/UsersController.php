@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['only'=>['login', 'signin']]);
+    }
+
     public function register(){
         return view('users.register');
     }
@@ -139,5 +144,11 @@ class UsersController extends Controller
         Mail::queue($view, $data, function ($message) use ($user, $subject){
             $message->to($user->email)->subject($subject);
         });
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

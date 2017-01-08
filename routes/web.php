@@ -25,3 +25,6 @@ Route::get('/user/login', 'UsersController@login');
 Route::post('/user/login', 'UsersController@signin');
 
 Route::get('verify/{confirm_code}', 'UsersController@confirmEmail');
+
+Route::get('/login', 'UsersController@login');
+Route::get('/logout', 'UsersController@logout');

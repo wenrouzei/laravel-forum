@@ -28,6 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::check())
                     <li><a href="">{{ Auth::user()->name }}</a></li>
+                    <li><a href="{{ url('logout') }}">退出登录</a></li>
                 @else
                 <li><a href="{{ url('/user/login') }}">登陆</a></li>
                 <li><a href="{{ url('/user/register') }}">注册</a></li>
