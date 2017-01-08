@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $discussions = Discussion::latest()->paginate(10);
+        $discussions = Discussion::withCount('comments')->latest()->paginate(10);
         return view('forum.index', compact('discussions'));
     }
 

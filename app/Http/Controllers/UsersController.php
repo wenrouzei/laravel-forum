@@ -99,9 +99,19 @@ class UsersController extends Controller
         return view('users.avatar');
     }
 
-    public function changeAvatar()
+    public function avatarUpload(Request $request)
     {
-        dd('333');
+        $file = $request->file('avatar');
+
+        $destinationPath = 'uploads/';
+        $filename = Auth::user()->id.'_'.time().'_'.$file->getClientOriginalName();
+        $file->move($destinationPath, $filename);
+
+        $user = User::find(Auth::user()->id);
+        $user->avatar = config('app.url').'/'.$destinationPath.$filename;
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**

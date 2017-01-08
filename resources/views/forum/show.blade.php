@@ -30,7 +30,7 @@
                     {!! $html !!}
                 </div>
                 <br>
-                @foreach($discussion->comments as $comment)
+                @foreach($discussion->comments()->latest()->paginate(2) as $comment)
                     <div class="media">
                         <div class="media-left">
                             <a href="">
@@ -43,6 +43,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="media-bottom pull-right">
+                {{ $discussion->comments()->latest()->paginate(2)->render() }}
+                </div>
                 <hr>
                 @if(Auth::check())
                     @if($errors->any())

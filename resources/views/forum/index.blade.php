@@ -24,7 +24,7 @@
                                 <a href="{{ url('discussions',$discussion->id) }}">{{ $discussion->title }}</a>
                                 <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
-                                        <a href="{{ url('discussions', $discussion->id) }}#replay">{{ count($discussion->comments) }}</a>
+                                        <a href="{{ url('discussions', $discussion->id) }}#replay">{{ $discussion->comments_count }}</a>
                                         回复
                                     </span>
                                 </div>
