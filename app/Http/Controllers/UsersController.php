@@ -15,6 +15,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['only'=>['login', 'signin']]);
+        $this->middleware('auth', ['only'=>['avatar', 'avatarUpload']]);
     }
 
     public function register(){
@@ -108,7 +109,7 @@ class UsersController extends Controller
         $file->move($destinationPath, $filename);
 
         $user = User::find(Auth::user()->id);
-        $user->avatar = config('app.url').'/'.$destinationPath.$filename;
+        $user->avatar = '/'.$destinationPath.$filename;
         $user->save();
 
         return redirect()->back();
