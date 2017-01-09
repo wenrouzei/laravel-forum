@@ -34,7 +34,7 @@ $factory->define(App\Discussion::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Comments::class, function (Faker\Generator $faker) {
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
     $user_ids = \App\User::pluck('id')->toArray();
     $discussion_ids = \App\Discussion::pluck('id')->toArray();
     return [

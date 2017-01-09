@@ -104,7 +104,7 @@ class UsersController extends Controller
         $file = $request->file('avatar');
 
         $destinationPath = 'uploads/';
-        $filename = Auth::user()->id.'_'.time().'_'.$file->getClientOriginalName();
+        $filename = Auth::user()->id.'_'.time().'_'.$file->getClientOriginalExtension();
         $file->move($destinationPath, $filename);
 
         $user = User::find(Auth::user()->id);
