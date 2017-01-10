@@ -32,7 +32,7 @@
                     {!! $html !!}
                 </div>
                 <br>
-                @foreach($discussion->comments()->latest()->paginate(2) as $comment)
+                @foreach($discussion->comments()->latest()->paginate(10) as $comment)
                     <div class="media">
                         <div class="media-left">
                             <a href="">
@@ -45,6 +45,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                @if(Auth::check())
                 <div class="media" v-for="comment in comments">
                     <div class="media-left">
                         <a href="#">
@@ -56,10 +58,13 @@
                         @{{ comment.body }}
                     </div>
                 </div>
+                @endif
+
                 <div class="media-bottom pull-right">
-                {{ $discussion->comments()->latest()->paginate(2)->render() }}
+                {{ $discussion->comments()->latest()->paginate(10)->render() }}
                 </div>
                 <hr>
+
                 @if(Auth::check())
                     @if($errors->any())
                         <ul class="list-group">
@@ -88,6 +93,7 @@
         </div>
     </div>
 
+    @if(Auth::check())
     <script>
         Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
         new Vue({
@@ -127,4 +133,5 @@
             }
         })
     </script>
+    @endif
 @stop
