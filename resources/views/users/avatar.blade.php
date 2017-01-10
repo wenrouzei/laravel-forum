@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
     <script src="{{ asset('js/jquery.form.js') }}"></script>

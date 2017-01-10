@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
     <div class="jumbotron">
@@ -15,21 +15,20 @@
                 @foreach($discussions as $discussion)
                     <div class="media">
                         <div class="media-left">
-                            <a href="">
-                                <img src="{{ $discussion->user->avatar }}" alt="64*64" style="width: 64px; height: 64px" class="media-object img-circle">
+                            <a href="{{ url('discussions',$discussion->id) }}" data-toggle="tooltip" data-placement="right" title="{{ $discussion->user->name }} 发布于 {{ $discussion->created_at->diffForHumans() }}">
+                                <img src="{{ $discussion->user->avatar }}" alt="46*46" style="width: 46px; height: 46px" class="media-object img-circle">
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">
+                            <h3 class="media-heading">
                                 <a href="{{ url('discussions',$discussion->id) }}">{{ $discussion->title }}</a>
-                                <div class="media-conversation-meta">
-                                    <span class="media-conversation-replies">
-                                        <a href="{{ url('discussions', $discussion->id) }}#replay">{{ $discussion->comments_count }}</a>
-                                        回复
-                                    </span>
-                                </div>
-                            </h4>
-                            {{ $discussion->user->name }}
+                                <span class="media-conversation-replies icon-comment-alt"> {{ $discussion->comments_count }}</span>
+                            </h3>
+                            @if($discussion->comments_count)
+                                <span class="username  icon-reply"> {{ $discussion->comments()->latest()->first()->user->name }}</span> 回复于 {{ $discussion->comments()->latest()->first()->created_at->diffForHumans() }}
+                            @else
+                            <span class="username">{{ $discussion->user->name }}</span> 发布于 {{ $discussion->created_at->diffForHumans() }}
+                            @endif
                         </div>
                     </div>
                 @endforeach
@@ -39,4 +38,10 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    </script>
 @stop

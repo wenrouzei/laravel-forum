@@ -7,11 +7,18 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>laravel forum</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">--}}
+    {{--<link rel="stylesheet" href="{{ asset('Font-Awesome/css/font-awesome.min.css') }}">--}}
+    {{--<link rel="stylesheet" href="{{ asset('css/style.css') }}">--}}
+    {{--<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>--}}
+
+    {{--使用自带app.css app.js 已包含bootstrap、jquery、vue--}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('Font-Awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -59,14 +66,6 @@
 </nav>
 
 @yield('content')
-<style>
-    .footer {
-        color: #777;
-        padding: 30px 0;
-        border-top: 1px solid #e5e5e5;
-        margin-top: 70px;
-    }
-</style>
 <footer class="footer">
     <div class="container">
         <div class="row footer-top">
@@ -120,5 +119,6 @@
         </div>
     </div>
 </footer>
+@yield('js')
 </body>
 </html>

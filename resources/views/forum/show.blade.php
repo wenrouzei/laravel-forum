@@ -1,8 +1,6 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
-    <script src="{{ asset('js/vue.min.js') }}"></script>
-    <script src="{{ asset('js/vue-resource.min.js') }}"></script>
     <div class="jumbotron">
         <div class="container">
             <div class="media">
@@ -92,46 +90,51 @@
             </div>
         </div>
     </div>
+@stop
 
+@section('js')
+    {{--laravel5.3自带vue--}}
+    {{--<script src="{{ asset('js/vue.min.js') }}"></script>--}}
+    <script src="{{ asset('js/vue-resource.min.js') }}"></script>
     @if(Auth::check())
-    <script>
-        Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
-        new Vue({
-            el:'#post',
-            data:{
-                comments:[],
-                newComment:{
-                    name:'{{ Auth::user()->name }}',
-                    avatar:'{{ Auth::user()->avatar }}',
-                    body:''
-                },
-                newPost:{
-                    discussion_id:'{{ $discussion->id }}',
-                    user_id:'{{ Auth::user()->id }}',
-                    body:''
-                }
-            },
-            methods:{
-                onSubmitForm:function (e) {
-                    e.preventDefault();
-                    var comment = this.newComment;
-                    var post = this.newPost;
-                    post.body = comment.body;
-                    this.$http.post('/comments', post).then(
-                        (response) => {
-                            this.comments.push(comment);
-                        },
-                        (response) => {
-                        // error callback
-                    });
-                    this.newComment = {
+        <script>
+            Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
+            new Vue({
+                el:'#post',
+                data:{
+                    comments:[],
+                    newComment:{
                         name:'{{ Auth::user()->name }}',
                         avatar:'{{ Auth::user()->avatar }}',
                         body:''
-                    };
+                    },
+                    newPost:{
+                        discussion_id:'{{ $discussion->id }}',
+                        user_id:'{{ Auth::user()->id }}',
+                        body:''
+                    }
+                },
+                methods:{
+                    onSubmitForm:function (e) {
+                        e.preventDefault();
+                        var comment = this.newComment;
+                        var post = this.newPost;
+                        post.body = comment.body;
+                        this.$http.post('/comments', post).then(
+                            (response) => {
+                            this.comments.push(comment);
+                    },
+                        (response) => {
+                            // error callback
+                        });
+                        this.newComment = {
+                            name:'{{ Auth::user()->name }}',
+                            avatar:'{{ Auth::user()->avatar }}',
+                            body:''
+                        };
+                    }
                 }
-            }
-        })
-    </script>
+            })
+        </script>
     @endif
 @stop
