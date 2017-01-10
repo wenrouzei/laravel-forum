@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -24,8 +24,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Discussion::class, function (Faker\Generator $faker) {
-    $user_ids = \App\User::pluck('id')->toArray();
+$factory->define(App\Models\Discussion::class, function (Faker\Generator $faker) {
+    $user_ids = \App\Models\User::pluck('id')->toArray();
     return [
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
@@ -34,9 +34,9 @@ $factory->define(App\Discussion::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Comment::class, function (Faker\Generator $faker) {
-    $user_ids = \App\User::pluck('id')->toArray();
-    $discussion_ids = \App\Discussion::pluck('id')->toArray();
+$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
+    $user_ids = \App\Models\User::pluck('id')->toArray();
+    $discussion_ids = \App\Models\Discussion::pluck('id')->toArray();
     return [
         'body' => $faker->paragraph,
         'user_id' => $faker->randomElement($user_ids),

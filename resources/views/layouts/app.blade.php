@@ -46,8 +46,8 @@
                 <li><a href="#contact">积分商城</a></li>
             </ul>
 
+            @if(Auth::check())
             <ul class="nav navbar-nav navbar-right">
-                @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，{{ Auth::user()->name }}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -62,17 +62,19 @@
                 <li><img src="{{ Auth::user()->avatar }}" alt="" width="46" class="img-circle"></li>
             </ul>
             @else
-                <!--<form class="navbar-form navbar-right" role="form">-->
-                    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input type="text" placeholder="邮箱" class="form-control">&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<input type="password" placeholder="密码" class="form-control">&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<button type="submit" class="btn btn-success">Sign in</button>&ndash;&gt;-->
-                    <!--</form>-->
+                {{--<form class="navbar-form navbar-right" role="form">--}}
+                    {{--<div class="form-group">--}}
+                        {{--<input type="text" placeholder="Email" class="form-control">--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<input type="password" placeholder="Password" class="form-control">--}}
+                    {{--</div>--}}
+                    {{--<button type="submit" class="btn btn-success">Sign in</button>--}}
+                {{--</form>--}}
+                <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ url('/user/login') }}">登陆</a></li>
                 <li><a href="{{ url('/user/register') }}">注册</a></li>
+                </ul>
             @endif
         </div><!--/.navbar-collapse -->
     </div>

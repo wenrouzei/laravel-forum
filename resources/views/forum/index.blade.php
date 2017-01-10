@@ -14,7 +14,7 @@
             <div class="col-md-4 col-md-offset-3">
                 <form action="{{ url('/') }}">
                     <div class="input-group">
-                        <input type="search" name="q" placeholder="搜索" class="form-control">
+                        <input type="search" name="q" value="{{ Request::input('q') }}" placeholder="搜索" class="form-control">
                         <span class="input-group-btn">
                         <button class="btn btn-default" type="submit" data-toggle="tooltip" title="点击搜索">Go!</button>
                         </span>
@@ -22,7 +22,7 @@
                 </form>
             </div>
             <div class="col-md-3 col-md-offset-1">
-                <a class="btn btn-primary btn-lg pull-left" href="{{ url('discussions/create') }}" role="button">发布帖子</a>
+                <a class="btn btn-primary btn-lg pull-left" href="{{ url('discussions/create') }}" data-toggle="tooltip" title="需要先登录" role="button">发布帖子</a>
                 <button type="button" class="btn btn-primary btn-lg pull-right active" data-placement="bottom" data-toggle="tooltip" title="点击签到">签到</button>
             </div>
         </div>

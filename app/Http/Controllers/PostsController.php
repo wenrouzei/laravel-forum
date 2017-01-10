@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Discussion;
+use App\Models\Discussion;
 use App\Http\Requests\ForumPostRequest;
 use App\Markdown\Markdown;
 use Illuminate\Http\Request;
