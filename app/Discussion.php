@@ -16,4 +16,15 @@ class Discussion extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        if (!$search) {
+            return $query;
+        }
+
+        return  $query->where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', "%$search%");
+        });
+    }
 }

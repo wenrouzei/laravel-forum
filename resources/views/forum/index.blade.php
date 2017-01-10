@@ -1,11 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--<div class="jumbotron">--}}
+        {{--<div class="container">--}}
+            {{--<h1>欢迎来到laravel forum社区!--}}
+                {{--<a class="btn btn-primary btn-lg pull-right" href="{{ url('discussions/create') }}" role="button">发布帖子</a>--}}
+            {{--</h1>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
     <div class="jumbotron">
-        <div class="container">
-            <h1>欢迎来到laravel forum社区!
-                <a class="btn btn-primary btn-lg pull-right" href="{{ url('discussions/create') }}" role="button">发布帖子</a>
-            </h1>
+        <div class="container" style="padding-top: 50px;">
+            <div class="col-md-4 col-md-offset-3">
+                <form action="{{ url('/') }}">
+                    <div class="input-group">
+                        <input type="search" name="q" placeholder="搜索" class="form-control">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" data-toggle="tooltip" title="点击搜索">Go!</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <a class="btn btn-primary btn-lg pull-left" href="{{ url('discussions/create') }}" role="button">发布帖子</a>
+                <button type="button" class="btn btn-primary btn-lg pull-right active" data-placement="bottom" data-toggle="tooltip" title="点击签到">签到</button>
+            </div>
         </div>
     </div>
 
@@ -33,7 +52,7 @@
                     </div>
                 @endforeach
                 <div class="media-bottom pull-right">
-                    {{ $discussions->render() }}
+                    {{ $discussions->appends(Request::except('page'))->render() }}
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
-.navbar{
-    margin-bottom: 0;
-    padding: 2em;
-}
+/*.navbar{*/
+    /*margin-bottom: 0;*/
+    /*padding: 2em;*/
+/*}*/
 
 .footer {
     color: #777;
@@ -10,10 +10,10 @@
     margin-top: 70px;
 }
 
-.navbar-default .navbar-nav > .active > a{
-    color: #555;
-    background-color: inherit;
-}
+/*.navbar-default .navbar-nav > .active > a{*/
+    /*color: #555;*/
+    /*background-color: inherit;*/
+/*}*/
 .dropdown-menu > li > a{
     padding: 10px 20px;
 }
@@ -26,9 +26,9 @@
     overflow: inherit;
     padding-top:8px;
 }
-.img-circle{
-    box-shadow: rgba(255, 255, 255, 1) 0 0 0 3px, rgba(255, 255, 255, 1) 0 0 1px 3px;
-}
+/*.img-circle{*/
+    /*box-shadow: rgba(255, 255, 255, 1) 0 0 0 3px, rgba(255, 255, 255, 1) 0 0 1px 3px;*/
+/*}*/
 
 .media-conversation-replies {
     float: right;
