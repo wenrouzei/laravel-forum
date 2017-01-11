@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -71,7 +73,12 @@ class RegisterController extends Controller
             'avatar'=>'/images/default-avatar.png'
         ]);
 
+        if(is_null($user)){
+            flash('注册失败!');
+            return redirect()->withInput()->back();
+        }
         $this->sendVerifyToEmail($user);
+
         return $user;
     }
 
@@ -86,5 +93,23 @@ class RegisterController extends Controller
         Mail::queue($view, $data, function ($message) use ($user, $subject){
             $message->to($user->email)->subject($subject);
         });
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+//        $this->guard()->login($user);
+        flash('注册成功，请先到邮箱激活账号再登录!');
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }

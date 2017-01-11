@@ -9,7 +9,9 @@
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.3.0",
         "intervention/image": "^2.3",
-        "yuanchao/laravel-5-markdown-editor": "dev-master"
+        "yuanchao/laravel-5-markdown-editor": "dev-master",
+        "laracasts/flash": "^2.0",
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

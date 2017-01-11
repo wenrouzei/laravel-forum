@@ -69,6 +69,7 @@
     </style>
 </head>
 <body>
+@include('layouts.flash')
 <div class="container">
     <form class="form-signin" action="{{ url('/login') }}" method="POST" role="form">
         {{ csrf_field() }}

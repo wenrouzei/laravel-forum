@@ -1,14 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{--<div class="jumbotron">--}}
-        {{--<div class="container">--}}
-            {{--<h1>欢迎来到laravel forum社区!--}}
-                {{--<a class="btn btn-primary btn-lg pull-right" href="{{ url('discussions/create') }}" role="button">发布帖子</a>--}}
-            {{--</h1>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
     <div class="jumbotron">
         <div class="container" style="padding-top: 50px;">
             <div class="col-md-4 col-md-offset-3">
