@@ -30,7 +30,7 @@
 
     <div class="container">
         <div id="row">
-            <div class="col-md-9" role="main">
+            <div class="col-md-12" role="main">
                 @foreach($discussions as $discussion)
                     <div class="media">
                         <div class="media-left">

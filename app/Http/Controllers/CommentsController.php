@@ -9,9 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(CommentPostRequest $request)
     {
-        Comment::create(array_merge($request->all(), ['user_id'=>Auth::user()->id]));
+        $comment = Comment::create(array_merge($request->all(), ['user_id'=>Auth::user()->id]));
+
+        if($request->ajax() && !is_null($comment)){
+            return ['success'=>true];
+        }
 
         return redirect()->back();
     }
