@@ -85,7 +85,7 @@
 
                     {!! Form::close() !!}
                 @else
-                    <a href="{{ url('user/login') }}" class="btn btn-block btn-success">登录参与评论</a>
+                    <a href="{{ url('login') }}" class="btn btn-block btn-success">登录参与评论</a>
                 @endif
             </div>
         </div>

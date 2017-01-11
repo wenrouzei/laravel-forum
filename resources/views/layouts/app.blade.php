@@ -56,7 +56,17 @@
                         <li><a href="{{ url('/user/avatar') }}">更换头像</a></li>
                         <li><a href="#">修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ url('logout') }}" class="icon-signout"> 退出登录</a></li>
+                        <li>
+                            <a class="icon-signout" href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                退出登录
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li><img src="{{ Auth::user()->avatar }}" alt="" width="46" class="img-circle"></li>
@@ -72,8 +82,8 @@
                     {{--<button type="submit" class="btn btn-success">Sign in</button>--}}
                 {{--</form>--}}
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url('/user/login') }}">登陆</a></li>
-                <li><a href="{{ url('/user/register') }}">注册</a></li>
+                <li><a href="{{ url('/login') }}">登陆</a></li>
+                <li><a href="{{ url('/register') }}">注册</a></li>
                 </ul>
             @endif
         </div><!--/.navbar-collapse -->

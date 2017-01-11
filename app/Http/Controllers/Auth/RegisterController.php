@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +63,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirm_code' => str_random(48),
+            'avatar'=>'/images/default-avatar.png'
         ]);
+
+        $this->sendVerifyToEmail($user);
+        return $user;
+    }
+
+    private function sendVerifyToEmail($user)
+    {
+        $data = [
+            'username' => $user->name,
+            'verifyUrl' => url('verify',$user->confirm_code)
+        ];
+        $subject = '邮箱激活验证邮件';
+        $view = 'email.register';
+        Mail::queue($view, $data, function ($message) use ($user, $subject){
+            $message->to($user->email)->subject($subject);
+        });
     }
 }

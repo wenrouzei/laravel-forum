@@ -85,7 +85,7 @@
             {{ Session::get('user_login_failed') }}
         </div>
     @endif
-    <form class="form-signin" action="{{ url('/user/login') }}" method="POST" role="form">
+    <form class="form-signin" action="{{ url('/login') }}" method="POST" role="form">
         {{ csrf_field() }}
         <h2 class="form-signin-heading">laravel forum</h2>
         <input name="email" type="email" class="form-control" placeholder="邮箱" required autofocus>

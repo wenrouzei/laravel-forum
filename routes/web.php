@@ -21,15 +21,12 @@ Route::resource('discussions','PostsController');
 Route::post('discussions/upload','PostsController@upload');
 Route::resource('comments','CommentsController');
 
-Route::get('/user/register', 'UsersController@register');
-Route::post('/user/register', 'UsersController@store');
-Route::get('/user/login', 'UsersController@login');
-Route::post('/user/login', 'UsersController@signin');
 Route::get('/user/avatar', 'UsersController@avatar');
 Route::post('/user/avatarUpload', 'UsersController@avatarUpload');
 Route::post('/user/avatarCrop', 'UsersController@avatarCrop');
 
-Route::get('verify/{confirm_code}', 'UsersController@confirmEmail');
+Route::get('verify/{confirm_code}', 'EmailController@verify');
 
-Route::get('/login', 'UsersController@login');
-Route::get('/logout', 'UsersController@logout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

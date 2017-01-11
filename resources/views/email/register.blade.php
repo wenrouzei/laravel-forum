@@ -7,7 +7,8 @@
     <title>laravel forum</title>
 </head>
 <body>
-    <h1>Hello Confirm Your Email</h1>
-    <a href="{{ url('verify', $confirm_code) }}">Click To Confirm</a>
+    <h1>{{ $username }}，你好：</h1>
+    <h1>点击一下链接，验证邮箱：</h1>
+    <a href="{{ $verifyUrl }}">{{ $verifyUrl }}</a>
 </body>
 </html>
