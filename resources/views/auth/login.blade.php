@@ -96,6 +96,11 @@
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <label>
+        <a class="btn btn-link" href="{{ url('password/reset') }}">
+            忘记密码?
+        </a>
+        </label>
     </form>
 
 </div> <!-- /container -->
