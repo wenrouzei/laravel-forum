@@ -54,7 +54,7 @@
                         <li><a href="{{ url('home') }}" class="icon-user"> 我的账户</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ url('/user/avatar') }}">更换头像</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="{{ url('/user/password') }}">修改密码</a></li>
                         <li class="divider"></li>
                         <li>
                             <a class="icon-signout" href="{{ url('/logout') }}"
@@ -72,7 +72,7 @@
             </ul>
             @else
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url('/login') }}">登陆</a></li>
+                <li><a href="{{ url('/login') }}">登录</a></li>
                 <li><a href="{{ url('/register') }}">注册</a></li>
                 </ul>
             @endif

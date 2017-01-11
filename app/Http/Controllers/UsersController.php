@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserPasswordEditRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -64,5 +65,36 @@ class UsersController extends Controller
         $user->save();
 
         return redirect('user/avatar');
+    }
+
+    /**
+     * 用户修改密码视图
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function password()
+    {
+        return view('users.password');
+    }
+
+    /**
+     * 用户修改密码
+     * @param UserPasswordEditRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function passwordEdit(UserPasswordEditRequest $request)
+    {
+        $user = Auth::user();
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        Auth::logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        flash('密码修改成功，请用新密码重新登录', 'success');
+
+        return redirect('/login');
     }
 }
