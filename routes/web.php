@@ -30,3 +30,7 @@ Route::get('verify/{confirm_code}', 'EmailController@verify');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+foreach (glob(__DIR__.DIRECTORY_SEPARATOR.'dev'.DIRECTORY_SEPARATOR.'*.php') as $file){
+    require $file;
+}
