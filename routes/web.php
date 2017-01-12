@@ -24,6 +24,9 @@ Route::resource('comments','CommentsController');
 Route::get('/user/avatar', 'UsersController@avatar');
 Route::post('/user/avatarUpload', 'UsersController@avatarUpload');
 Route::post('/user/avatarCrop', 'UsersController@avatarCrop');
+Route::get('user/password', 'UsersController@password');
+Route::post('user/passwordEdit', 'UsersController@passwordEdit');
+Route::get('user/index', 'UsersController@index');
 
 Route::get('verify/{confirm_code}', 'EmailController@verify');
 
