@@ -28,9 +28,10 @@
             <div class="col-md-9" role="main" id="post">
                 <div class="blog-post">
                     {!! $html !!}
+                    <a href="{{ url('like') }}" class="btn btn-default">点赞</a>
                 </div>
                 <br>
-                @foreach($discussion->comments()->latest()->paginate(10) as $comment)
+                @foreach($discussion->comments()->with('user')->latest()->paginate(10) as $comment)
                     <div class="media">
                         <div class="media-left">
                             <a href="">
@@ -38,7 +39,7 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">{{ $comment->user->name }}</a> <span style="font-size: 12px; font-weight: normal;">回复于{{ $discussion->created_at->diffForHumans() }}</span></h4>
+                            <h4 class="media-heading">{{ $comment->user->name }}</a> <span style="font-size: 12px; font-weight: normal;">回复于{{ $comment->created_at->diffForHumans() }}</span></h4>
                             {{ $comment->body }}
                         </div>
                     </div>

@@ -27,7 +27,7 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         $q = $request->input('q');
-        $discussions = Discussion::search($q)->with('comments')->withCount('comments')->latest()->paginate(10);
+        $discussions = Discussion::search($q)->with('user')->with('comments')->latest()->paginate(10);
         return view('forum.index', compact('discussions'));
     }
 
@@ -51,7 +51,7 @@ class PostsController extends Controller
     {
         $data = [
             'user_id' => Auth::user()->id,
-            'last_user_id' => Auth::user()->id,
+            'last_reply_user_id' => Auth::user()->id,
         ];
 
         $discussion = Discussion::create(array_merge($request->all(), $data));

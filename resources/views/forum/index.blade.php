@@ -33,10 +33,10 @@
                         <div class="media-body">
                             <h3 class="media-heading">
                                 <a href="{{ url('discussions',$discussion->id) }}">{{ $discussion->title }}</a>
-                                <span class="media-conversation-replies icon-comment-alt"> {{ $discussion->comments_count }}</span>
+                                <span class="media-conversation-replies icon-comment-alt"> {{ $discussion->comments->count() }}</span>
                             </h3>
-                            @if($discussion->comments_count)
-                                <span class="username  icon-reply"> {{ $discussion->comments()->latest()->first()->user->name }}</span> 回复于 {{ $discussion->comments()->latest()->first()->created_at->diffForHumans() }}
+                            @if(!$discussion->comments->isEmpty())
+                                <span class="username  icon-reply"> {{ $discussion->comments->last()->user->name }}</span> 回复于 {{ $discussion->comments->last()->created_at->diffForHumans() }}
                             @else
                             <span class="username">{{ $discussion->user->name }}</span> 发布于 {{ $discussion->created_at->diffForHumans() }}
                             @endif
