@@ -32,8 +32,11 @@
                             {!! Form::open(['url'=>'/user/avatarUpload','files'=>true,'id'=>'avatar']) !!}
                             <div class="text-center">
                                 <button type="button" class="btn btn-success avatar-button" id="upload-avatar">上传新的头像</button>
+                                {!! Form::file('avatar',['class'=>'avatar','id'=>'image']) !!}
                             </div>
-                            {!! Form::file('avatar',['class'=>'avatar','id'=>'image']) !!}
+                            <div class="text-center">
+                                <label>上传的图片大小不超过 2M</label>
+                            </div>
                             {!! Form::close() !!}
                             <div class="span5">
                                 <div id="output" style="display:none">

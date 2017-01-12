@@ -17,6 +17,11 @@ class Discussion extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function lastReplyUser()
+    {
+        return $this->belongsTo(User::class, 'last_reply_user_id');
+    }
+
     public function scopeSearch($query, $search)
     {
         if (!$search) {

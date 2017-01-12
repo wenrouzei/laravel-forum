@@ -18,8 +18,12 @@ class CreateDiscussionsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->integer('user_id')->unsigned();
-            $table->integer('last_user_id')->unsigned();
+            $table->integer('last_reply_user_id')->unsigned();
+            $table->integer('reply_count')->default(0);
+            $table->integer('like_count')->default(0);
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('last_reply_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

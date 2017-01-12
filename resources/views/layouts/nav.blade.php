@@ -24,6 +24,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('user/index') }}" class="icon-user"> 我的账户</a></li>
                             <li class="divider"></li>
+                            <li><a href="{{ url('/user/credit') }}">我的积分</a></li>
                             <li><a href="{{ url('/user/avatar') }}">更换头像</a></li>
                             <li><a href="{{ url('/user/password') }}">修改密码</a></li>
                             <li class="divider"></li>

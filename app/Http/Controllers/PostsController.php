@@ -27,7 +27,7 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         $q = $request->input('q');
-        $discussions = Discussion::search($q)->withCount('comments')->latest()->paginate(10);
+        $discussions = Discussion::search($q)->with('comments')->withCount('comments')->latest()->paginate(10);
         return view('forum.index', compact('discussions'));
     }
 
