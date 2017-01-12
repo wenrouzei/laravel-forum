@@ -6,18 +6,39 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.Jcrop.css') }}">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="text-center">
-                    <div id="validation-errors"></div>
-                    <img src="{{Auth::user()->avatar}}" width="120" class="img-circle" id="user-avatar" alt="">
-                    {!! Form::open(['url'=>'/user/avatarUpload','files'=>true,'id'=>'avatar']) !!}
-                    <div class="text-center">
-                        <button type="button" class="btn btn-success avatar-button" id="upload-avatar">上传新的头像</button>
+            <div class="col-md-3">
+                <div class="thumbnail" style="height: 336px;">
+                    <img class="img-circle" src="{{ Auth::user()->avatar }}" width="200" height="200">
+                    <div class="caption">
+                        <dl style="width: 80%" class="pull-right">
+                            <dt>用户名：</dt>
+                            <dd>{{ Auth::user()->name }}</dd>
+                            <dt>注册时间：</dt>
+                            <dd>{{ Auth::user()->created_at }}</dd>
+                        </dl>
                     </div>
-                    {!! Form::file('avatar',['class'=>'avatar','id'=>'image']) !!}
-                    {!! Form::close() !!}
-                    <div class="span5">
-                        <div id="output" style="display:none">
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        @include('users._nav')
+
+                        <div class="text-center">
+                            <div id="validation-errors"></div>
+                            <img src="{{Auth::user()->avatar}}" width="120" class="img-circle" id="user-avatar" alt="">
+                            {!! Form::open(['url'=>'/user/avatarUpload','files'=>true,'id'=>'avatar']) !!}
+                            <div class="text-center">
+                                <button type="button" class="btn btn-success avatar-button" id="upload-avatar">上传新的头像</button>
+                            </div>
+                            {!! Form::file('avatar',['class'=>'avatar','id'=>'image']) !!}
+                            {!! Form::close() !!}
+                            <div class="span5">
+                                <div id="output" style="display:none">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -35,7 +56,7 @@
                     <div class="modal-body">
                         <div class="content">
                             <div class="crop-image-wrapper">
-                                <img src="/images/default-avatar.png" class="ui centered image" id="cropbox" >
+                                <img src="/images/avatars/default.png" class="ui centered image" id="cropbox" >
                                 <input type="hidden" id="photo" name="photo" />
                                 <input type="hidden" id="x" name="x" />
                                 <input type="hidden" id="y" name="y" />

@@ -8,12 +8,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return view('users.index');
     }
 
     public function avatar()
@@ -84,7 +90,18 @@ class UsersController extends Controller
     public function passwordEdit(UserPasswordEditRequest $request)
     {
         $user = Auth::user();
-        $user->password = bcrypt($request->input('password'));
+        $old_password = $request->input('old_password');
+        $new_password = $request->input('password');
+
+        if(!Hash::check($old_password, $user->password)){
+            flash('当前密码输入错误，请重新输入');
+            return redirect()->back();
+        }elseif(Hash::check($new_password,$user->password)){
+            flash('输入的新密码跟当前密码相同，无需修改');
+            return redirect()->back();
+        }
+
+        $user->password = bcrypt($new_password);
         $user->save();
 
         Auth::logout();
