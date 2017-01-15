@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('Font-Awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
     <!-- Scripts -->
     <script>
@@ -27,6 +27,7 @@
     </script>
 </head>
 <body>
+<div id="app">
 @include('layouts.nav')
 
 @include('layouts.flash')
@@ -34,7 +35,7 @@
 @yield('content')
 
 @include('layouts.footer')
-
+</div>
 @yield('js')
 </body>
 </html>

@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'test',
                 'email' => 'test@qq.com',
                 'password' => bcrypt('123456'),
-                'confirm_code' => str_random(60),
+                'confirm_token' => str_random(60),
                 'is_confirmed' => 1,
                 'avatar'=>'/images/avatars/default.png',
                 'remember_token' => str_random(60),

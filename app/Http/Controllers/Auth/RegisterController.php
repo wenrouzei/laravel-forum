@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'confirm_code' => str_random(60),
+            'confirm_token' => str_random(60),
             'avatar'=>'/images/avatars/default.png'
         ]);
 
@@ -86,7 +86,7 @@ class RegisterController extends Controller
     {
         $data = [
             'username' => $user->name,
-            'verifyUrl' => url('verify',$user->confirm_code)
+            'verifyUrl' => url('verify',$user->confirm_token)
         ];
         $subject = '邮箱激活验证邮件';
         $view = 'email.register';

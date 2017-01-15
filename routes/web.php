@@ -28,7 +28,9 @@ Route::get('user/password', 'UsersController@password');
 Route::post('user/passwordEdit', 'UsersController@passwordEdit');
 Route::get('user/index', 'UsersController@index');
 
-Route::get('verify/{confirm_code}', 'EmailController@verify');
+Route::get('verify/{confirm_token}', 'EmailController@verify');
+
+Route::get('like/{id}', 'LikeController@index');
 
 Auth::routes();
 

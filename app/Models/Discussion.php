@@ -32,4 +32,16 @@ class Discussion extends Model
             $query->where('title', 'LIKE', "%$search%");
         });
     }
+
+    /**
+     * 获取该文章的所有点赞
+     */
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function liked(){
+        return !!$this->likes()->where('user_id', \Auth::id())->count();
+    }
 }

@@ -28,7 +28,6 @@
             <div class="col-md-9" role="main" id="post">
                 <div class="blog-post">
                     {!! $html !!}
-                    <a href="{{ url('like') }}" class="btn btn-default">点赞</a>
                 </div>
                 <br>
                 @foreach($discussion->comments()->with('user')->latest()->paginate(10) as $comment)
@@ -89,14 +88,28 @@
                     <a href="{{ url('login') }}" class="btn btn-block btn-success">登录参与评论</a>
                 @endif
             </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>{{ $discussion->like_count }}</h2>
+                        <span>个赞</span>
+                    </div>
+                    <div class="panel-body">
+    {{--                    <a href="{{ url('like', $discussion->id) }}" class="btn btn-default {{ $discussion->liked()?'btn-success':'' }}">
+                            {{ $discussion->liked()?'已赞':'点赞' }}
+                        </a>--}}
+                        <like like="{{ $discussion->id }}" user="{{ Auth::id() }}"></like>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @stop
 
 @section('js')
     {{--laravel5.3 app.js文件自带vue--}}
-    {{--<script src="{{ asset('js/vue.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/vue-resource.min.js') }}"></script>--}}
+    <script src="{{ asset('js/vue.min.js') }}"></script>
+    <script src="{{ asset('js/vue-resource.min.js') }}"></script>
     @if(Auth::check())
         <script>
             Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
@@ -143,4 +156,5 @@
             })
         </script>
     @endif
+    <script src="{{ asset('js/app.js') }}"></script>
 @stop
